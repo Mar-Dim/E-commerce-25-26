@@ -10,6 +10,7 @@
 		<title>Baristas</title>
 		<link rel="stylesheet" href="assets/css/styles.css" />
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+		<link rel ="stylesheet" href="assets/css/footer.css">
 	</head>
 	<body>
 		<header>
@@ -559,33 +560,35 @@
 							<li><a href="#">Mi cuenta</a></li>
 							<li><a href="#">Historial de ordenes</a></li>
 							<li><a href="#">Lista de deseos</a></li>
-							<li><a href="#">Boletín</a></li>
-							<li><a href="#">Reembolsos</a></li>
+							<li><a href="#Boletin">Boletín</a></li>
 						</ul>
 					</div>
 
-					<div class="newsletter">
+					<div class="newsletter" id="Boletin">
 						<p class="title-footer">Boletín informativo</p>
 
 						<div class="content">
 							<p>
-								Suscríbete a nuestros boletines ahora y mantente al
-								día con nuevas colecciones y ofertas exclusivas.
+							¿Deseas recibir actualizaciones o realizar una cotizacion de los equipos?
 							</p>
-							<input type="email" placeholder="Ingresa el correo aquí...">
-							<button>Suscríbete</button>
+							<input type="email" id="emailInput" placeholder="Ingresa el correo aquí...">
+							<button id="subscribeBtn">Suscríbete</button>
 						</div>
 					</div>
+						
 				</div>
 
 				<div class="copyright">
-					<p>
-						Desarrollado por Programación para el mundo &copy; 2025
-					</p>
-
+					2025 todos los derechos reservados    
 					<img src="assets/img/payment.png" alt="Pagos">
 				</div>
 			</div>
 		</footer>
+		<div id="popup" class="popup">
+						<div class="popup-content">
+						<p></p>
+						</div>
+		</div>
 	</body>
+	<script src="popup.js"></script>
 </html>
