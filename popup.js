@@ -1,8 +1,7 @@
 const subscribeBtn = document.getElementById("subscribeBtn");
 const emailInput = document.getElementById("emailInput");
 const popup = document.getElementById("popup");
-const popupText = popup.querySelector("p"); // apunto al <p> dentro
-popup.style.display = "none";
+const popupText = popup.querySelector("p"); 
 
 subscribeBtn.addEventListener("click", () => {
   const email = emailInput.value.trim();
