@@ -18,11 +18,11 @@ class Producto {
 const productos = [
   new Producto({
     idProducto: "P001",
-    nombre: "Moca Helado",
+    nombre: "Cafe Helado",
     descripcion: "Delicioso café moca servido con hielo, leche y un toque de chocolate.",
     categoria: "Bebida Fría",
-    precio: 4.60,
-    tamaño: "Grande",
+    precio: 5.60,
+    tamaño: "Mediano",
     imagen: "assets/img/cafe-helado.jpg"
   }),
   new Producto({
@@ -31,7 +31,7 @@ const productos = [
     descripcion: "Shot intenso de café espresso con notas tostadas y cuerpo robusto.",
     categoria: "Bebida Caliente",
     precio: 3.20,
-    tamaño: "Simple",
+    tamaño: "Mediano",
     imagen: "assets/img/expreso.jpg"
   }),
   new Producto({
@@ -48,7 +48,7 @@ const productos = [
     nombre: "Café Irish",
     descripcion: "Café con un toque de crema y notas dulces, perfecto para consentirte.",
     categoria: "Especial",
-    precio: 5.60,
+    precio: 4.60,
     tamaño: "Mediano",
     imagen: "assets/img/cafe-irish.jpg"
   }),
@@ -57,7 +57,7 @@ const productos = [
     nombre: "Café Australiano",
     descripcion: "Espresso suave con leche microespumada, de textura sedosa y sabor balanceado. Presenta notas a caramelo y cacao, con un toque sutil a nuez y final limpio. Ideal para quienes buscan cremosidad sin exceso de espuma, al estilo clásico de las cafeterías australianas.",
     categoria: "Bebida Caliente",
-    precio: 4.20,
+    precio: 3.20,
     tamaño: "Mediano",
     imagen: "assets/img/cafe-australiano.jpg"
   }),
@@ -66,30 +66,30 @@ const productos = [
     nombre: "Café Viena",
     descripcion: "Doble espresso coronado con abundante crema batida en lugar de leche. Cuerpo intenso, dulzor equilibrado y notas a chocolate y vainilla; final cremoso y reconfortante.",
     categoria: "Especial",
-    precio: 5.30,
+    precio: 3.85,
     tamaño: "Mediano",
     imagen: "assets/img/cafe-viena.jpg"
   }),
   new Producto({
-    idProducto: "P006",
+    idProducto: "P007",
     nombre: "Café Liqueur",
     descripcion: "Café espresso mezclado con licor (p. ej., Kahlúa, amaretto, whisky o ron), dulzor sutil y notas tostadas. Puede servirse caliente o con hielo, y suele coronarse con crema batida o una capa ligera de espuma para un final sedoso y aromático.",
-    categoria: "Café con Licor",
-    precio: 6.50,
+    categoria: "Especial",
+    precio: 5.60,
     tamaño: "Mediano",
     imagen: "assets/img/cafe-liqueurs.jpg"
   }),
   new Producto({
-    idProducto: "P007",
+    idProducto: "P008",
     nombre: "Café Ingles",
     descripcion: "Espresso alargado con agua caliente (estilo Americano) para un cuerpo más ligero y sabor limpio. Notas suaves a cacao y tostado, con final balanceado; opcional un toque de leche para suavizar.",
     categoria: "Bebida Caliente",
-    precio: 4.00,
+    precio: 5.70,
     tamaño: "Mediano",
     imagen: "assets/img/cafe-ingles.jpg"
   }),
   new Producto({
-    idProducto: "P008",
+    idProducto: "P009",
     nombre: "Alfajor de Chocolate",
     descripcion: "Dos galletas suaves con intenso cacao, rellenas de abundante dulce de leche cremoso y cubiertas con un baño de chocolate brillante. Textura tierna que se deshace al morder, equilibrio perfecto entre dulzor y notas amargas de cacao. Ideal para acompañar café o como antojo goloso.",
     categoria: "Postre",
@@ -98,7 +98,7 @@ const productos = [
     imagen: "assets/img/alfajor-chocolate.jpg"
   }),
   new Producto({
-    idProducto: "P009",
+    idProducto: "P010",
     nombre: "Rollo de Canela",
     descripcion: "Masa suave y esponjosa arrollada con relleno de canela y azúcar morena, horneada hasta dorar y cubierta con glaseado cremoso de vainilla. Aroma cálido, centro tierno y pegajosito, perfectos para acompañar café o como antojo dulce a cualquier hora.",
     categoria: "Postre",
@@ -107,7 +107,7 @@ const productos = [
     imagen: "assets/img/rollos-canela.jpg"
   }),
   new Producto({
-    idProducto: "P010",
+    idProducto: "P011",
     nombre: "Galletas de vainilla",
     descripcion: "Galletas crujientes por fuera y ligeramente tiernas por dentro, elaboradas con mantequilla y vainilla natural. Sabor delicado y aromático, con dulzor equilibrado y un toque dorado al hornear. Ideales para acompañar café, té o como snack a cualquier hora.",
     categoria: "Postre",
