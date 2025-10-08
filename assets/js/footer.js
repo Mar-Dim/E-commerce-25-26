@@ -7,10 +7,9 @@
           <div class="contact-info">
             <p class="title-footer">Información de Contacto</p>
             <ul>
-              <li>Dirección: 71 Pennington Lane Vernon Rockville, CT 06066</li>
-              <li>Teléfono: 123-456-7890</li>
-              <li>Fax: 55555300</li>
-              <li>Email: baristas@support.com</li>
+              <li>Dirección: Bogota y Montevideo, Ambato</li>
+              <li>Teléfono: 0985547214 </li>
+              <li>Email: pastel_cafe@gmail.com</li>
             </ul>
             <div class="social-icons">
               <span class="facebook"><i class="fa-brands fa-facebook-f"></i></span>
@@ -25,7 +24,6 @@
             <p class="title-footer">Información</p>
             <ul>
               <li><a href="nosotros.html">Acerca de Nosotros</a></li>
-              <li><a href="#">Términos y condiciones</a></li>
               <li><a href="contacto.html">Contactános</a></li>
             </ul>
           </div>
@@ -51,7 +49,7 @@
         </div>
 
         <div class="copyright">
-          2025 todos los derechos reservados    
+   
           <img src="assets/img/payment.png" alt="Pagos">
         </div>
       </div>
