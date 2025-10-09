@@ -1,40 +1,33 @@
 # E-commerce-25-26
-Repositorio de la pagina web de E-Commerce generada como proyecto de mitad de semestre de la materia ACS
+Repositorio de la pagina web de E-Commerce generada como proyecto de mitad de semestre de la materia ACS (Ingeniería de Software).
 
-Descripcion del proyecto:
+## Descripcion del proyecto:
 Este es un proyecto de E-Commerce desarrollado como parte de la materia ACS de la carrera de Ingenieria de software.
 Dentro de este proyecto se implementa un sistema basico de tienda onlin, donde los usuarios tienen acceso a productos, los colocan en un carrito y se realizan compras de forma simulada.
 
-Tecnologias:
+## Tecnologias Utilizadas:
 Las tecnologias seleccionadas para este aplicativo son:
-FRONTEND:
--HTML
--JAVASCRIPT
--CSS
-CONTROL DE VERSIONES:
--Git + GitFlow
+**Frontend:**
+- HTML
+- CSS
+- JavaScript
 
-Funcionalidades del sitio:
+**Control de Versiones:**
+- Git
+- GitFlow
+
+## Funcionalidades del sitio:
 Dentro de aplicativo se tiene como principales funcionalidades:
 -Navegacion por distintos productos
 -Visualizacion de detalles del producto
 -Acceso a carro de compras
 -Pagina de contacto de la empresa
 
-Proceso de instalacion:
-1.Clonar el dispositivo
-git clone https://github.com/Mar-Dim/E-commerce-25-26.git
-cd E-commerce-25-26
-2.Abrir el archivo index.html en el navegador
+## Estructura del Proyecto
 
-Uso de GitFlow:
-Dentro de este proyecto se utiliza git flow para mantener la organizacion del proyecto.
-main -> Produccion
-develop -> desarrollo
-feature -> funcionalidades
-hotflix-> arreglos rapidos
+El proyecto se compone de los siguientes archivos y carpetas:
 
-Estructura del proyecto dentro de los archivos
+```
 E-commerce/
 ├─ index.html
 ├─ carrito.html
@@ -44,9 +37,40 @@ E-commerce/
 ├─ js/
 │  └─ main.js
 ├─ README.md
+```
 
-Politica de contribuciones:
-Si se desea colaborar, revisar el documento de CONTRIBUTIONS
+---
 
-Tipo de licencia:
-MIT License
+## Proceso de Instalación
+
+Para instalar y ejecutar el proyecto en tu máquina local, sigue estos pasos:
+
+1. Clona el repositorio
+   ```bash
+   git clone https://github.com/Mar-Dim/E-commerce-25-26.git
+   cd E-commerce-25-26
+   ```
+2. Abre el archivo `index.html` en tu navegador.
+
+---
+
+## Uso de GitFlow
+
+Este proyecto utiliza GitFlow para mantener la organización y el control de versiones. Las ramas principales son:
+
+- `main`: Producción
+- `develop`: Desarrollo
+- `feature/*`: Nuevas funcionalidades
+- `hotfix/*`: Arreglos rápidos
+
+---
+
+## Política de Contribuciones
+
+Si deseas colaborar con el proyecto, por favor revisa el documento de `CONTRIBUTIONS` para más detalles sobre cómo contribuir.
+
+---
+
+## Tipo de Licencia
+
+Este proyecto está bajo la Licencia MIT. Para más detalles, consulta el archivo `LICENSE`.
