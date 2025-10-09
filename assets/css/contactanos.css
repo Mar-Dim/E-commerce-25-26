@@ -139,4 +139,74 @@
     .container-contact {
         padding: 3rem;
     }
+
+  
+.popup {
+  display: none; 
+  position: fixed; 
+  top: 25px;
+  right: 25px;
+  background-color: #bea85b; 
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  z-index: 1001;
+  font-family: sans-serif;
+  min-width: 250px;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.popup.show {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.popup-content p {
+  margin: 0;
+  font-size: 16px;
+}
+}
+/* ========================================= */
+/*           ESTILOS PARA EL POPUP           */
+/* ========================================= */
+.popup {
+  /* Oculto y fuera de la vista por defecto */
+  display: block;
+  opacity: 0;
+  transform: translateY(-50px);
+  
+  /* Posicionamiento */
+  position: fixed; 
+  top: 25px;
+  right: 25px;
+  z-index: 1001; 
+  
+  /* Estilos visuales */
+  min-width: 280px;
+  background-color: #28a745;
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+  font-family: Arial, sans-serif;
+  text-align: center;
+  
+  /* Animación suave */
+  transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+}
+
+/* Clase que se añade con JS para mostrar el popup */
+.popup.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.popup-content p {
+  margin: 0;
+  font-size: 16px;
 }

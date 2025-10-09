@@ -28,15 +28,7 @@
             </ul>
           </div>
 
-          <div class="my-account">
-            <p class="title-footer">Mi cuenta</p>
-            <ul>
-              <li><a href="#">Mi cuenta</a></li>
-              <li><a href="#">Historial de ordenes</a></li>
-              <li><a href="#">Lista de deseos</a></li>
-              <li><a href="#Boletin">Boletín</a></li>
-            </ul>
-          </div>
+          
 
           <div class="newsletter" id="Boletin">
             <p class="title-footer">Boletín informativo</p>
