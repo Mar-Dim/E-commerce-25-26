@@ -1,3 +1,4 @@
+import { agregarAlCarrito, renderCartDropdown } from './cart.js';
 window.addEventListener("DOMContentLoaded", () => {
   const qs = new URLSearchParams(window.location.search);
   const posParam = qs.get("pos");
@@ -41,7 +42,7 @@ window.addEventListener("DOMContentLoaded", () => {
                 <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                 <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                 <i class="fa-regular fa-star"></i>
-                <span style="font-size:.9rem; color:#565959; margin-left:.4rem;">(${Math.floor(Math.random()*400)+80})</span>
+                <span style="font-size:.9rem; color:#565959; margin-left:.4rem;">(${Math.floor(Math.random() * 400) + 80})</span>
               </div>
               <h3 style="font-size:1.2rem; line-height:1.35; color:#222; margin:0 0 .5rem 0;">${producto.nombre}</h3>
               <p style="color:#0f1111; margin:0 0 .7rem 0;">${producto.descripcion}</p>
@@ -76,7 +77,9 @@ window.addEventListener("DOMContentLoaded", () => {
                    style="flex:1; max-width:260px; text-align:center; padding:.75rem 1.25rem; background:#fff; border:1px solid #d5d9d9; color:#111; border-radius:24px; text-decoration:none; white-space:nowrap;">
                    Volver
                 </a>
-                <button id="add" class="btn-read-more"
+                <button 
+                    id="add" 
+                    class="btn-read-more"
                    style="flex:1; max-width:260px; text-align:center; padding:.75rem 1.25rem; background:#ffd814; border:1px solid #fcd200; color:#111; border-radius:24px; white-space:nowrap; font-weight:700;">
                    Agregar al carrito
                 </button>
@@ -92,6 +95,7 @@ window.addEventListener("DOMContentLoaded", () => {
     const priceEl = document.getElementById("price");
     const totalEl = document.getElementById("total");
     const qtyEl = document.getElementById("qty");
+    const addBtn = document.getElementById("add");
 
     let mult = 1;
 
@@ -132,6 +136,66 @@ window.addEventListener("DOMContentLoaded", () => {
       qtyEl.value = isNaN(v) || v < 1 ? 1 : v;
       update();
     });
+
+    addBtn.addEventListener("click", () => {
+      const qty = Math.max(1, parseInt(qtyEl.value, 10) || 1);
+      const unit = base * mult;
+
+      
+      let selSize = defaultKey;
+      const sizesEl = document.getElementById("sizes");
+      if (sizesEl) {
+        const btns = sizesEl.querySelectorAll('button[data-size][data-m]');
+        for (const b of btns) {
+          const m = Number(b.getAttribute('data-m'));
+          if (Number(m) === Number(mult)) {
+            selSize = b.getAttribute('data-size') || defaultKey;
+            break;
+          }
+        }
+      }
+
+      const variantId = `${producto.idProducto}__${selSize}`;
+      const variantName = `${producto.nombre} (${selSize})`;
+
+      for (let i = 0; i < qty; i++) {
+        agregarAlCarrito(variantId, variantName, unit);
+      }
+
+      renderCartDropdown();
+
+      const toast = document.createElement("span");
+      toast.textContent = `✅ ${variantName} agregado al carrito`;
+      Object.assign(toast.style, {
+        position: "fixed",
+        bottom: "20px",
+        right: "20px",
+        background: "#222",
+        color: "#fff",
+        padding: "12px 20px",
+        borderRadius: "10px",
+        fontSize: "0.95rem",
+        boxShadow: "0 2px 8px rgba(0,0,0,0.3)",
+        opacity: "0",
+        transition: "opacity 0.4s ease, transform 0.4s ease",
+        transform: "translateY(20px)",
+        zIndex: "9999"
+      });
+      document.body.appendChild(toast);
+
+      // Animación de aparición
+      requestAnimationFrame(() => {
+        toast.style.opacity = "1";
+        toast.style.transform = "translateY(0)";
+      });
+
+      setTimeout(() => {
+        toast.style.opacity = "0";
+        toast.style.transform = "translateY(20px)";
+        setTimeout(() => toast.remove(), 500);
+      }, 3000);
+    });
+
   }
 
   if (!posParam || !esEnteroNoNegativo(posParam)) {
@@ -165,3 +229,5 @@ window.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+
+
