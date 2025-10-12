@@ -42,8 +42,8 @@ export function createNavbar() {
                 <li><a href="index.html">Inicio</a></li>
                 <li><a href="productos.html">Productos</a></li>
                 <li><a href="detalle.html?pos=0">Moca Helado</a></li>
-                <li><a href="#">Expreso</a></li>
-                <li><a href="#">Capuchino</a></li>
+                <li><a href="detalle.html?pos=1">Expreso</a></li>
+                <li><a href="detalle.html?pos=2">Capuchino</a></li>
                 <li><a href="#">Blog</a></li>
             </ul>
             <form class="search-form">
