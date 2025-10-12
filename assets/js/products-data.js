@@ -116,3 +116,4 @@ const productos = [
     imagen: "assets/img/galletas.jpg"
   })
 ];
+if (typeof window !== 'undefined') window.productos = productos;
