@@ -45,8 +45,8 @@ export function createNavbar() {
                 <li><a href="#">Blog</a></li>
             </ul>
             <form class="search-form">
-                <input type="search" placeholder="Buscar..." />
-                <button class="btn-search">
+                <input class="search-input" type="search" placeholder="Buscar..." />
+                <button class="btn-search" type="submit">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
             </form>
