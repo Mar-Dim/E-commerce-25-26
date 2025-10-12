@@ -114,6 +114,5 @@ const productos = [
     precio: 0.50,
     tamaño: "Mediano",
     imagen: "assets/img/galletas.jpg"
-  }),
-
+  })
 ];
