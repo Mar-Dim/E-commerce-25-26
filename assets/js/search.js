@@ -46,17 +46,7 @@ function attachLiveSuggestions() {
   if (!box) {
     box = document.createElement("div");
     box.id = "search-suggestions";
-    Object.assign(box.style, {
-      position: "absolute",
-      zIndex: "2147483647",     // por si el header usa z-index alto
-      background: "#fff",
-      border: "1px solid #e5e5e5",
-      borderRadius: ".5rem",
-      boxShadow: "0 8px 24px rgba(0,0,0,.1)",
-      maxHeight: "240px",
-      overflowY: "auto",
-      display: "none"
-    });
+    box.className = "search-suggestions";   // <---
     document.body.appendChild(box);
   }
 
@@ -70,31 +60,37 @@ function attachLiveSuggestions() {
 
   // 3) Renderizado de sugerencias (solo por nombre)
   let sel = -1, t;
-  function render(q) {
+    function render(q){
     const nq = norm(q);
     const list = nq
       ? getNames().filter(x => norm(x.name).startsWith(nq) || norm(x.name).includes(nq))
       : [];
 
-    if (!list.length) {
+    if (!list.length){
       box.style.display = "none";
       box.innerHTML = "";
       sel = -1;
       return;
     }
 
-    const top = list.slice(0, 5);
-    box.innerHTML = top.map((x,k)=>`
-      <button type="button" class="sug" data-idx="${x.i}" data-k="${k}"
-        style="display:block;width:100%;text-align:left;padding:.55rem .75rem;border:none;background:#fff;cursor:pointer">
-        ${x.name}
-      </button>
-    `).join("");
-
+    const top = list.slice(0,5);
+    box.innerHTML = `
+      <ul class="sug-list">
+        ${top.map((x,k)=>`
+          <li>
+            <button type="button" class="sug-item" data-idx="${x.i}" data-k="${k}">
+              <span class="sug-name">${x.name}</span>
+              <span class="sug-meta">Ver detalle</span>
+            </button>
+          </li>
+        `).join("")}
+      </ul>
+    `;
     sel = -1;
     place();
     box.style.display = "block";
   }
+
 
   // 4) Eventos
   input.addEventListener("input", () => {
@@ -103,7 +99,7 @@ function attachLiveSuggestions() {
   });
 
   box.addEventListener("click", (e) => {
-    const btn = e.target.closest(".sug");
+    const btn = e.target.closest(".sug-item");
     if (!btn) return;
     const idx = Number(btn.dataset.idx);
     window.location.href = `detalle.html?pos=${idx}`;
@@ -111,7 +107,7 @@ function attachLiveSuggestions() {
 
   input.addEventListener("keydown", (e) => {
     if (box.style.display === "none") return;
-    const items = [...box.querySelectorAll(".sug")];
+    const items = [...box.querySelectorAll(".sug-item")];
     if (!items.length) return;
 
     if (e.key === "ArrowDown") { e.preventDefault(); sel = (sel+1)%items.length; }
@@ -122,7 +118,8 @@ function attachLiveSuggestions() {
       box.style.display = "none"; return;
     }
 
-    items.forEach((it,k)=> it.style.background = (k===sel) ? "#f5f5f5" : "#fff");
+    items.forEach((it,k)=> it.classList.toggle("is-active", k===sel));
+
   });
 
   document.addEventListener("click", (e)=>{
