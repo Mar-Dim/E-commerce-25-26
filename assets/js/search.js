@@ -1,38 +1,20 @@
 // assets/js/search.js
 function norm(s) {
-  return (s || "")
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .toLowerCase()
-    .trim();
+  return (s || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
 }
-
 function getProducts() {
-  // productos está definido en products-data.js
   if (typeof productos !== "undefined") return productos;
   if (window.productos) return window.productos;
   return [];
 }
-
 function findBestIndex(q, list) {
   const nq = norm(q);
   if (!nq) return null;
-
-  // 1) nombre exacto
-  let i = list.findIndex(p => norm(p.nombre) === nq);
-  if (i >= 0) return i;
-
-  // 2) nombre empieza por
-  i = list.findIndex(p => norm(p.nombre).startsWith(nq));
-  if (i >= 0) return i;
-
-  // 3) nombre contiene
-  i = list.findIndex(p => norm(p.nombre).includes(nq));
-  if (i >= 0) return i;
-
+  let i = list.findIndex(p => norm(p.nombre) === nq); if (i >= 0) return i;
+  i = list.findIndex(p => norm(p.nombre).startsWith(nq)); if (i >= 0) return i;
+  i = list.findIndex(p => norm(p.nombre).includes(nq)); if (i >= 0) return i;
   return null;
 }
-
 function toast(msg) {
   let el = document.getElementById("search-toast");
   if (!el) {
@@ -50,29 +32,122 @@ function toast(msg) {
   setTimeout(()=>{ el.style.opacity="0"; }, 2000);
 }
 
-export function initSearch() {
-  // Delegación para no depender del orden en que se inyecta la navbar
-  document.addEventListener("submit", (e) => {
-    const form = e.target;
-    if (!form.matches(".search-form")) return;
+function attachLiveSuggestions() {
+  const form = document.querySelector(".search-form");
+  if (!form) return;
+  const input = form.querySelector(".search-input");
+  if (!input) return;
 
-    e.preventDefault();
-    const input = form.querySelector(".search-input");
-    const q = input ? input.value : "";
+  const all = getProducts();
+  const getNames = () => all.map((p, i) => ({ i, name: p.nombre }));
 
-    const all = getProducts();
-    const idx = findBestIndex(q, all);
+  // 1) Creamos el dropdown en <body> para evitar overflow/stacking
+  let box = document.getElementById("search-suggestions");
+  if (!box) {
+    box = document.createElement("div");
+    box.id = "search-suggestions";
+    Object.assign(box.style, {
+      position: "absolute",
+      zIndex: "2147483647",     // por si el header usa z-index alto
+      background: "#fff",
+      border: "1px solid #e5e5e5",
+      borderRadius: ".5rem",
+      boxShadow: "0 8px 24px rgba(0,0,0,.1)",
+      maxHeight: "240px",
+      overflowY: "auto",
+      display: "none"
+    });
+    document.body.appendChild(box);
+  }
 
-    if (idx == null) {
-      // Si prefieres ir a listado filtrado, cambia a:
-      // window.location.href = `productos.html?q=${encodeURIComponent(q)}`;
-      toast("Producto no existente");
+  // 2) Posicionar el dropdown justo bajo el input (aunque el nav tenga overflow)
+  function place() {
+    const r = input.getBoundingClientRect();
+    box.style.width = r.width + "px";
+    box.style.left  = (r.left + window.scrollX) + "px";
+    box.style.top   = (r.bottom + window.scrollY + 6) + "px";
+  }
+
+  // 3) Renderizado de sugerencias (solo por nombre)
+  let sel = -1, t;
+  function render(q) {
+    const nq = norm(q);
+    const list = nq
+      ? getNames().filter(x => norm(x.name).startsWith(nq) || norm(x.name).includes(nq))
+      : [];
+
+    if (!list.length) {
+      box.style.display = "none";
+      box.innerHTML = "";
+      sel = -1;
       return;
     }
 
-    // Redirige a la ficha de producto por índice (tu details.js usa ?pos)
+    const top = list.slice(0, 5);
+    box.innerHTML = top.map((x,k)=>`
+      <button type="button" class="sug" data-idx="${x.i}" data-k="${k}"
+        style="display:block;width:100%;text-align:left;padding:.55rem .75rem;border:none;background:#fff;cursor:pointer">
+        ${x.name}
+      </button>
+    `).join("");
+
+    sel = -1;
+    place();
+    box.style.display = "block";
+  }
+
+  // 4) Eventos
+  input.addEventListener("input", () => {
+    clearTimeout(t);
+    t = setTimeout(() => render(input.value), 100);
+  });
+
+  box.addEventListener("click", (e) => {
+    const btn = e.target.closest(".sug");
+    if (!btn) return;
+    const idx = Number(btn.dataset.idx);
     window.location.href = `detalle.html?pos=${idx}`;
   });
+
+  input.addEventListener("keydown", (e) => {
+    if (box.style.display === "none") return;
+    const items = [...box.querySelectorAll(".sug")];
+    if (!items.length) return;
+
+    if (e.key === "ArrowDown") { e.preventDefault(); sel = (sel+1)%items.length; }
+    else if (e.key === "ArrowUp") { e.preventDefault(); sel = (sel-1+items.length)%items.length; }
+    else if (e.key === "Enter") {
+      if (sel>=0) { e.preventDefault(); items[sel].click(); }
+    } else if (e.key === "Escape") {
+      box.style.display = "none"; return;
+    }
+
+    items.forEach((it,k)=> it.style.background = (k===sel) ? "#f5f5f5" : "#fff");
+  });
+
+  document.addEventListener("click", (e)=>{
+    if (!box.contains(e.target) && e.target!==input) box.style.display = "none";
+  });
+
+  window.addEventListener("scroll", place, true);
+  window.addEventListener("resize", place);
 }
 
 
+export function initSearch() {
+  // 1) submit del buscador (solo nombres)
+  document.addEventListener("submit", (e) => {
+    const form = e.target;
+    if (!form.matches(".search-form")) return;
+    e.preventDefault();
+    const input = form.querySelector(".search-input");
+    const q = input ? input.value : "";
+    const all = getProducts();
+    const idx = findBestIndex(q, all);
+    if (idx == null) { toast("Producto no existente"); return; }
+    window.location.href = `detalle.html?pos=${idx}`;
+  });
+
+  // 2) sugerencias en vivo
+  attachLiveSuggestions();
+}
