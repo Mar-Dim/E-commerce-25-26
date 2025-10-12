@@ -1072,3 +1072,71 @@ html {
 		font-size: 1.6rem;
 	}
 }
+
+/* ======== Alineado global para cards (Destacados y Más Recientes) ======== */
+	.container-products {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(23rem, 1fr));
+	gap: 3rem;
+	align-items: stretch; /* fuerza mismo alto de tarjeta */
+	}
+
+	.card-product {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 100%;
+	}
+
+	/* Imagen con tamaño consistente */
+	.card-product .container-img {
+	position: relative;
+	height: 220px;              /* altura fija para homogeneizar */
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	}
+
+	.card-product .container-img img {
+	max-height: 100%;
+	width: auto;
+	object-fit: contain;
+	}
+
+	/* Contenido con espacio para el pie (carrito + precio) */
+	.card-product .content-card-product {
+	flex-grow: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	text-align: center;
+	margin-top: 1rem;
+	position: relative;
+	padding-bottom: 55px; /* deja espacio para footer fijo */
+	}
+
+	/* Pie alineado igual en todas */
+	.card-product .add-cart {
+	position: absolute;
+	bottom: 15px;
+	left: 20px;
+	}
+
+	.card-product .price {
+	position: absolute;
+	bottom: 15px;
+	right: 20px;
+	}
+
+	/* Asegura que el título y estrellas no colapsen */
+	.content-card-product h3 { min-height: 2.5rem; }
+	.content-card-product .stars { margin-bottom: 0.5rem; }
+
+	
+
+	/* Ajuste responsive independiente */
+	@media (max-width: 768px) {
+	.card-product .container-img { height: 180px; }
+}
+
+
