@@ -1,0 +1,117 @@
+:root{
+  --panel:#f5f5f5;
+  --text:#222;
+  --muted:#555;
+  --brand:#0D2B81;
+  --price:#20603D;
+}
+
+.grid-productos{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:1.2rem;
+  margin-top:1rem;
+}
+@media(max-width:768px){
+  .grid-productos{grid-template-columns:1fr}
+}
+
+.prod-card{
+  background:var(--panel);
+  border-radius:16px;
+  padding:14px 16px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  box-shadow:0 6px 14px rgba(0,0,0,.08);
+  transition:transform .15s ease, box-shadow .15s ease;
+}
+.prod-card:hover{
+  transform:translateY(-2px);
+  box-shadow:0 10px 20px rgba(0,0,0,.12);
+}
+
+.prod-info{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+  min-width:0;
+  color:var(--text);
+}
+.prod-title{
+  font-size:1.15rem;
+  font-weight:800;
+  line-height:1.2;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+.prod-desc{
+  font-size:1rem;
+  color:var(--muted);
+  line-height:1.45;
+  max-height:3em;
+  overflow:hidden;
+}
+.prod-price{
+  color:var(--price);
+  font-weight:800;
+  font-size:1.15rem;
+}
+
+.prod-actions{
+  display:flex;
+  gap:.5rem;
+  margin-top:6px;
+  flex-wrap:wrap;
+}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  gap:.4rem;
+  padding:.55rem .9rem;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+  font-weight:700;
+  font-size:.95rem;
+}
+.btn-view{background:#eaeaea;color:#222}
+.btn-view:hover{background:#dedede}
+.btn-cart{background:var(--brand);color:#fff}
+.btn-cart:hover{filter:brightness(1.06)}
+
+.prod-thumb{
+  flex:0 0 auto;
+  width:92px;
+  height:92px;
+  border-radius:12px;
+  overflow:hidden;
+  background:#fff;
+}
+.prod-thumb img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+.msg-vacio{
+  display:none;
+  margin-top:1.2rem;
+  color:#666;
+  text-align:center;
+}
+
+.prod-title{font-size:1.7rem}
+.prod-desc{font-size:1.3rem}
+.prod-price{font-size:1.5rem}
+.btn{font-size:1rem; padding:.6rem 1rem}
+@media(max-width:520px){
+  .prod-card{padding:12px 14px; gap:10px}
+  .prod-thumb{width:80px;height:80px}
+  .prod-title{font-size:1.1rem}
+  .prod-desc{font-size:.98rem}
+  .btn{padding:.5rem .8rem; font-size:.9rem}
+}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Baristas — Productos</title>
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <link rel="stylesheet" href="assets/css/footer.css" />
+  <link rel="stylesheet" href="assets/css/carrito.css" />
+  <link rel="stylesheet" href="assets/css/productos.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <script src="assets/js/products-data.js" defer></script>
+  <script type="module" src="assets/js/main.js" defer></script>
+  <script type="module" src="assets/js/productos.js" defer></script>
+</head>
+<body>
+  <header id="navbar-container"></header>
+
+  <main class="container" style="padding:2rem 0">
+    <h1 class="heading-1">Productos</h1>
+
+    <div class="container-options" id="tabs-categorias" style="margin-bottom:1rem;">
+      <span class="tab-cat active" data-cat="__all__">Todo</span>
+      <span class="tab-cat" data-cat="Bebida Caliente">Bebida caliente</span>
+      <span class="tab-cat" data-cat="Bebida Fría">Bebida fría</span>
+      <span class="tab-cat" data-cat="Especial">Especial</span>
+      <span class="tab-cat" data-cat="Postre">Postre</span>
+    </div>
+
+    <section id="lista-productos" class="grid-productos"></section>
+    <p id="msg-vacio" class="msg-vacio">No hay productos para esta categoría.</p>
+  </main>
+
+  <footer id="footer"></footer>
+</body>
+</html>
