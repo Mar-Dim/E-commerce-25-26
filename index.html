@@ -14,7 +14,11 @@
 		<link rel ="stylesheet" href="assets/css/footer.css">
 		<link rel="stylesheet" href="assets/css/carrito.css">
 		
+		<script type="module" src="assets/js/products-data.js" defer></script>	
 		<script type="module" src="assets/js/main.js" defer></script>
+		<script type="module" src="assets/js/destacados.js" defer></script>
+		<script type="module" src="assets/js/recientes.js" defer></script>
+		<script type="module" src="assets/js/mejores.js" defer></script>
 	</head>
 	<body>
 		<header id="navbar-container">			
@@ -64,16 +68,22 @@
 			<h1 class="heading-1">Mejores Categorías</h1>
 			<div class="container-categories">
 				<div class="card-category category-moca">
-					<p>Café moca</p>
-					<span>Ver más</span>
+					<p>Bebidas Calientes</p>
+					<a href="productos.html?categoria=Bebida Caliente">
+						<span>Ver más</span>
+					</a>
 				</div>
 				<div class="card-category category-expreso">
-					<p>Expreso Americano</p>
-					<span>Ver más</span>
+					<p>Bebidas Frias</p>
+					<a href="productos.html?categoria=Bebida Fría">
+						<span>Ver más</span>
+					</a>
 				</div>
 				<div class="card-category category-capuchino">
-					<p>Capuchino</p>
-					<span>Ver más</span>
+					<p>Postres</p>
+					<a href="productos.html?categoria=Postre">
+						<span>Ver más</span>
+					</a>
 				</div>
 			</div>
 		</section>
@@ -101,12 +111,7 @@
 									style="cursor:pointer"
 									onclick="location.href='detalle.html?pos=3'"></i>
 							</span>
-							<span>
-								<i class="fa-regular fa-heart"></i>
-							</span>
-							<span>
-								<i class="fa-solid fa-code-compare"></i>
-							</span>
+							
 						</div>
 					</div>
 					<div class="content-card-product">
@@ -118,7 +123,7 @@
 							<i class="fa-regular fa-star"></i>
 						</div>
 						<h3>Cafe Irish</h3>
-						<span class="add-cart">
+						<span class="add-cart" title="Añadir al carrito" data-product-id="P004">
 							<i class="fa-solid fa-basket-shopping"></i>
 						</span>
 						<p class="price">$4.60 <span>$5.30</span></p>
@@ -137,12 +142,7 @@
 									style="cursor:pointer"
 									onclick="location.href='detalle.html?pos=7'"></i>
 							</span>
-							<span>
-								<i class="fa-regular fa-heart"></i>
-							</span>
-							<span>
-								<i class="fa-solid fa-code-compare"></i>
-							</span>
+							
 						</div>
 					</div>
 					<div class="content-card-product">
@@ -154,7 +154,7 @@
 							<i class="fa-regular fa-star"></i>
 						</div>
 						<h3>Cafe Inglés</h3>
-						<span class="add-cart">
+						<span class="add-cart" title="Añadir al carrito" data-product-id="P008">
 							<i class="fa-solid fa-basket-shopping"></i>
 						</span>
 						<p class="price">$5.70 <span>$7.30</span></p>
@@ -172,12 +172,7 @@
 									style="cursor:pointer"
 									onclick="location.href='detalle.html?pos=4'"></i>
 							</span>
-							<span>
-								<i class="fa-regular fa-heart"></i>
-							</span>
-							<span>
-								<i class="fa-solid fa-code-compare"></i>
-							</span>
+							
 						</div>
 					</div>
 					<div class="content-card-product">
@@ -189,7 +184,7 @@
 							<i class="fa-solid fa-star"></i>
 						</div>
 						<h3>Cafe Australiano</h3>
-						<span class="add-cart">
+						<span class="add-cart" title="Añadir al carrito" data-product-id="P005">
 							<i class="fa-solid fa-basket-shopping"></i>
 						</span>
 						<p class="price">$3.20</p>
@@ -207,12 +202,7 @@
 									style="cursor:pointer"
 									onclick="location.href='detalle.html?pos=0'"></i>
 							</span>
-							<span>
-								<i class="fa-regular fa-heart"></i>
-							</span>
-							<span>
-								<i class="fa-solid fa-code-compare"></i>
-							</span>
+							
 						</div>
 					</div>
 					<div class="content-card-product">
@@ -224,7 +214,7 @@
 							<i class="fa-regular fa-star"></i>
 						</div>
 						<h3>Cafe Helado</h3>
-						<span class="add-cart">
+						<span class="add-cart" title="Añadir al carrito" data-product-id="P001">
 							<i class="fa-solid fa-basket-shopping"></i>
 						</span>
 						<p class="price">$5.60</p>
@@ -258,12 +248,7 @@
 									style="cursor:pointer"
 									onclick="location.href='detalle.html?pos=3'"></i>
 							</span>
-							<span>
-								<i class="fa-regular fa-heart"></i>
-							</span>
-							<span>
-								<i class="fa-solid fa-code-compare"></i>
-							</span>
+							
 						</div>
 					</div>
 					<div class="content-card-product">
@@ -275,48 +260,13 @@
 							<i class="fa-regular fa-star"></i>
 						</div>
 						<h3>Cafe Irish</h3>
-						<span class="add-cart">
+						<span class="add-cart" title="Añadir al carrito" data-product-id="P004">
 							<i class="fa-solid fa-basket-shopping"></i>
 						</span>
 						<p class="price">$4.60 <span>$5.30</span></p>
 					</div>
 				</div>
-				<!-- Producto 2 -->
-				<div class="card-product">
-					<div class="container-img">
-						<img src="assets/img/cafe-ingles.jpg" alt="Cafe incafe-ingles.jpg" />
-						<span class="discount">-22%</span>
-						<div class="button-group">
-							<span>
-								<i class="fa-regular fa-eye"
-									role="button" 
-									tabindex="0" 
-									style="cursor:pointer"
-									onclick="location.href='detalle.html?pos=7'"></i>
-							</span>
-							<span>
-								<i class="fa-regular fa-heart"></i>
-							</span>
-							<span>
-								<i class="fa-solid fa-code-compare"></i>
-							</span>
-						</div>
-					</div>
-					<div class="content-card-product">
-						<div class="stars">
-							<i class="fa-solid fa-star"></i>
-							<i class="fa-solid fa-star"></i>
-							<i class="fa-solid fa-star"></i>
-							<i class="fa-regular fa-star"></i>
-							<i class="fa-regular fa-star"></i>
-						</div>
-						<h3>Cafe Inglés</h3>
-						<span class="add-cart">
-							<i class="fa-solid fa-basket-shopping"></i>
-						</span>
-						<p class="price">$5.70 <span>$7.30</span></p>
-					</div>
-				</div>
+				
 				<!--  -->
 				<div class="card-product">
 					<div class="container-img">
@@ -330,12 +280,7 @@
 									style="cursor:pointer"
 									onclick="location.href='detalle.html?pos=5'"></i>
 							</span>
-							<span>
-								<i class="fa-regular fa-heart"></i>
-							</span>
-							<span>
-								<i class="fa-solid fa-code-compare"></i>
-							</span>
+							
 						</div>
 					</div>
 					<div class="content-card-product">
@@ -347,7 +292,7 @@
 							<i class="fa-solid fa-star"></i>
 						</div>
 						<h3>Cafe Viena</h3>
-						<span class="add-cart">
+						<span class="add-cart" title="Añadir al carrito" data-product-id="P006">
 							<i class="fa-solid fa-basket-shopping"></i>
 						</span>
 						<p class="price">$3.85 <span>$5.50</span></p>
@@ -365,12 +310,7 @@
 									style="cursor:pointer"
 									onclick="location.href='detalle.html?pos=6'"></i>
 							</span>
-							<span>
-								<i class="fa-regular fa-heart"></i>
-							</span>
-							<span>
-								<i class="fa-solid fa-code-compare"></i>
-							</span>
+							
 						</div>
 					</div>
 					<div class="content-card-product">
@@ -382,7 +322,7 @@
 							<i class="fa-regular fa-star"></i>
 						</div>
 						<h3>Cafe Liqueurs</h3>
-						<span class="add-cart">
+						<span class="add-cart" title="Añadir al carrito" data-product-id="P007">
 							<i class="fa-solid fa-basket-shopping"></i>
 						</span>
 						<p class="price">$5.60</p>

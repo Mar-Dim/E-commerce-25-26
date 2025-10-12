@@ -7,6 +7,14 @@ const $lista=document.getElementById("lista-productos");
 const $tabs=document.getElementById("tabs-categorias");
 const $msg=document.getElementById("msg-vacio");
 
+function activarTabPorCategoria(cat){
+  const tab = $tabs.querySelector(`.tab-cat[data-cat="${cat}"]`);
+  if (!tab) return false;
+  activarTab(tab);
+  return true;
+}
+
+
 function cardTemplate(p,pos){
   return `
     <article class="prod-card">
@@ -68,9 +76,25 @@ function initActions(all){
   });
 }
 
-document.addEventListener("DOMContentLoaded",()=>{
-  const all=getProducts();
-  render(all,all);
+document.addEventListener("DOMContentLoaded", () => {
+  const all = getProducts();
+
+  // 1) Lee ?categoria= de la URL
+  const params = new URLSearchParams(location.search);
+  const catURL = params.get("categoria");
+
+  // 2) Decide la categoría inicial
+  let catInicial = "__all__";
+  if (catURL && all.some(p => p.categoria === catURL)) {
+    catInicial = catURL;
+  }
+
+  // 3) Activa la pestaña y renderiza según catInicial
+  if (catInicial !== "__all__") activarTabPorCategoria(catInicial);
+  render(filtrar(catInicial, all), all);
+
+  // 4) Inicializa tabs y acciones
   initTabs(all);
   initActions(all);
 });
+
