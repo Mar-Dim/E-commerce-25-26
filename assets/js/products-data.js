@@ -111,9 +111,18 @@ const productos = [
     nombre: "Galletas de vainilla",
     descripcion: "Galletas crujientes por fuera y ligeramente tiernas por dentro, elaboradas con mantequilla y vainilla natural. Sabor delicado y aromático, con dulzor equilibrado y un toque dorado al hornear. Ideales para acompañar café, té o como snack a cualquier hora.",
     categoria: "Postre",
-    precio: 0.50,
+    precio: 0.33,
     tamaño: "Mediano",
     imagen: "assets/img/galletas.jpg"
+  }),
+  new Producto({
+    idProducto: "P012",
+    nombre: "Galletas con Mermelada",
+    descripcion: "Galletas con Mermelada son una delicia artesanal elaborada con masa suave y mantequillosa, horneada hasta alcanzar un dorado perfecto. En el centro, una generosa capa de mermelada de fresa aporta un toque dulce y afrutado que contrasta a la perfección con la textura crujiente de la galleta. Son ideales para acompañar el café, el té o disfrutar como postre en cualquier momento del día.",
+    categoria: "Postre",
+    precio: 0.50,
+    tamaño: "Mediano",
+    imagen: "assets/img/galletas con mermelada.png"
   })
 ];
 if (typeof window !== 'undefined') window.productos = productos;
