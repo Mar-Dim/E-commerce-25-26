@@ -15,7 +15,7 @@ class Producto {
     return `$${this.precio.toFixed(2)}`;
   }
 }
-const productos = [
+export const productos = [
   new Producto({
     idProducto: "P001",
     nombre: "Cafe Helado",
