@@ -122,7 +122,7 @@ const productos = [
     categoria: "Postre",
     precio: 0.50,
     tamaño: "Mediano",
-    imagen: "assets/img/galletas con mermelada.jpg"
+    imagen: "assets/img/galletas con mermelada.png"
   })
 ];
 if (typeof window !== 'undefined') window.productos = productos;
