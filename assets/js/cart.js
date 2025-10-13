@@ -25,11 +25,21 @@ export function agregarAlCarrito(idProducto) {
 
 export function eliminarProducto(idProducto) {
     let carrito = obtenerCarrito();
-    carrito = carrito.filter(p => p.idProducto !== idProducto);
+
+    const index = carrito.findIndex(p => p.idProducto === idProducto);
+
+    if (index >= 0) {
+         carrito[index].cantidad--;
+        if (carrito[index].cantidad <= 0) {
+            carrito.splice(index, 1);
+        }
+    }
+
     guardarCarrito(carrito);
     renderCartDropdown();
     mostrarCarrito();
 }
+
 
 export function calcularTotales(carrito) {
     const subtotal = carrito.reduce((acc, p) => acc + p.precio * p.cantidad, 0);
