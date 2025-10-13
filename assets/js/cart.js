@@ -1,3 +1,4 @@
+import { productos } from '/assets/js/products-data.js';
 
 export function obtenerCarrito() {
     const carrito = localStorage.getItem('carrito');
@@ -8,20 +9,23 @@ export function guardarCarrito(carrito) {
     localStorage.setItem('carrito', JSON.stringify(carrito));
 }
 
-export function agregarAlCarrito(id, nombre, precio) {
+export function agregarAlCarrito(idProducto) {
     let carrito = obtenerCarrito();
-    const index = carrito.findIndex(p => p.id === id);
+    const producto = productos.find(p => p.idProducto === idProducto);
+    if (!producto) return;
+
+    const index = carrito.findIndex(p => p.idProducto === idProducto);
     if (index >= 0) carrito[index].cantidad++;
-    else carrito.push({ id, nombre, precio, cantidad: 1 });
+    else carrito.push({ ...producto, cantidad: 1 });
 
     guardarCarrito(carrito);
     renderCartDropdown();
     mostrarCarrito();
 }
 
-export function eliminarProducto(id) {
+export function eliminarProducto(idProducto) {
     let carrito = obtenerCarrito();
-    carrito = carrito.filter(p => p.id !== id);
+    carrito = carrito.filter(p => p.idProducto !== idProducto);
     guardarCarrito(carrito);
     renderCartDropdown();
     mostrarCarrito();
@@ -29,7 +33,7 @@ export function eliminarProducto(id) {
 
 export function calcularTotales(carrito) {
     const subtotal = carrito.reduce((acc, p) => acc + p.precio * p.cantidad, 0);
-    const total = subtotal * 1.15; // subtotal + 15% IVA
+    const total = subtotal * 1.15;
     return { subtotal, total };
 }
 
@@ -49,11 +53,25 @@ export function mostrarCarrito() {
 
     carrito.forEach(producto => {
         const item = document.createElement('div');
-        item.classList.add('item-carrito');
+        item.classList.add('cart-item');
+
         item.innerHTML = `
-            <span>${producto.nombre} (x${producto.cantidad}) - $${producto.precio.toFixed(2)}</span>
-            <button onclick="eliminarProducto(${producto.id})">Eliminar</button>
+            <img src="${producto.imagen}" alt="${producto.nombre}" class="cart-item-img">
+            <div class="cart-item-info">
+                <h3>${producto.nombre}</h3>
+                <p>${producto.descripcion.substring(0, 80)}...</p>
+                <p>Precio unitario: $${producto.precio.toFixed(2)}</p>
+                <p>Cantidad: ${producto.cantidad}</p>
+                <p>Subtotal: $${(producto.precio * producto.cantidad).toFixed(2)}</p>
+            </div>
+            <div class="cart-item-actions">
+    <button class="btn-danger">Eliminar</button>
+</div>
+
         `;
+        item.querySelector('.btn-danger').addEventListener('click', () => {
+            eliminarProducto(producto.idProducto);
+        });
         contenedor.appendChild(item);
     });
 
@@ -71,11 +89,10 @@ export function renderCartDropdown() {
     if (!cartItemsEl || !cartTotalEl) return;
 
     cartItemsEl.innerHTML = '';
-
     if (carrito.length === 0) {
         cartItemsEl.innerHTML = '<li>Carrito vacío</li>';
         cartTotalEl.textContent = '$0.00';
-        if(cartCount) cartCount.textContent = '(0)';
+        if (cartCount) cartCount.textContent = '(0)';
         return;
     }
 
@@ -87,8 +104,7 @@ export function renderCartDropdown() {
 
     const { total } = calcularTotales(carrito);
     cartTotalEl.textContent = `$${total.toFixed(2)}`;
-
-    if(cartCount) cartCount.textContent = `(${carrito.reduce((acc, i) => acc + i.cantidad, 0)})`;
+    if (cartCount) cartCount.textContent = `(${carrito.reduce((acc, i) => acc + i.cantidad, 0)})`;
 }
 
 export function initCartDropdown() {
@@ -97,9 +113,12 @@ export function initCartDropdown() {
 
     if (!cartButton || !cartDropdown) return;
 
+    cartDropdown.style.display = 'none';
+
     cartButton.addEventListener('click', (e) => {
         e.stopPropagation();
-        cartDropdown.style.display = cartDropdown.style.display === 'block' ? 'none' : 'block';
+        const visible = cartDropdown.style.display === 'block';
+        cartDropdown.style.display = visible ? 'none' : 'block';
         renderCartDropdown();
     });
 
