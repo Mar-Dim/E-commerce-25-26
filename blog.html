@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Baristas</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="assets/css/blog.css">
+    <link rel="stylesheet" href="assets/css/carrito.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <script src="assets/js/products-data.js" defer></script>
+    <script type="module" src="assets/js/main.js" defer></script>
+
+
+</head>
+
+<body>
+    <header id="navbar-container"></header>
+
+    <section class="blog-hero">
+        <div class="blog-hero-content">
+            <h1>Blog</h1>
+            <p>Noticias, lanzamientos y ediciones especiales.</p>
+        </div>
+    </section>
+
+
+    <main class="container">
+        <div class="blog-toolbar">
+            <input id="blog-search" type="search" placeholder="Buscar en el blog...">
+            <select id="blog-category">
+                <option value="Todas">Todas</option>
+                <option>Novedades</option>
+                <option>Promociones</option>
+                <option>Especiales</option>
+            </select>
+        </div>
+
+        <section id="blog-list"></section>
+    </main>
+
+    <footer id="footer"></footer>
+
+    <script type="module">import { initNavbar } from "./assets/js/Navbar.js"; initNavbar();</script>
+    <script src="assets/js/footer.js"></script>
+    <script type="module" src="assets/js/blog-data.js"></script>
+    <script type="module" src="assets/js/blog-list.js"></script>
+</body>
+
+</html>

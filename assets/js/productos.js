@@ -6,6 +6,11 @@ function getProducts(){
 const $lista=document.getElementById("lista-productos");
 const $tabs=document.getElementById("tabs-categorias");
 const $msg=document.getElementById("msg-vacio");
+const $orden=document.getElementById("ordenar");
+
+let allDataGlobal=[];
+let productosFiltrados=[];
+let modoOrden="default";
 
 function activarTabPorCategoria(cat){
   const tab = $tabs.querySelector(`.tab-cat[data-cat="${cat}"]`);
@@ -13,7 +18,6 @@ function activarTabPorCategoria(cat){
   activarTab(tab);
   return true;
 }
-
 
 function cardTemplate(p,pos){
   return `
@@ -32,10 +36,21 @@ function cardTemplate(p,pos){
   `;
 }
 
+function ordenarProductos(lista, modo){
+  const arr=[...lista];
+  if(modo==="price_asc") return arr.sort((a,b)=>a.precio-b.precio);
+  if(modo==="price_desc") return arr.sort((a,b)=>b.precio-a.precio);
+  if(modo==="az") return arr.sort((a,b)=>a.nombre.localeCompare(b.nombre));
+  if(modo==="za") return arr.sort((a,b)=>b.nombre.localeCompare(a.nombre));
+  return arr;
+}
+
 function render(list,all){
-  if(!list.length){$lista.innerHTML="";$msg.style.display="block";return}
+  if(!list.length){$lista.innerHTML="";$msg.style.display="block";productosFiltrados=[];return}
   $msg.style.display="none";
-  $lista.innerHTML=list.map(p=>{
+  productosFiltrados=[...list];
+  const ordenados=ordenarProductos(productosFiltrados, modoOrden);
+  $lista.innerHTML=ordenados.map(p=>{
     const pos=all.findIndex(x=>x.idProducto===p.idProducto);
     return cardTemplate(p,pos);
   }).join("");
@@ -56,7 +71,8 @@ function initTabs(all){
     const tab=e.target.closest(".tab-cat");
     if(!tab)return;
     activarTab(tab);
-    render(filtrar(tab.dataset.cat,all),all);
+    const lista=filtrar(tab.dataset.cat,all);
+    render(lista,all);
   });
 }
 
@@ -78,23 +94,28 @@ function initActions(all){
 
 document.addEventListener("DOMContentLoaded", () => {
   const all = getProducts();
+  allDataGlobal = all;
 
-  // 1) Lee ?categoria= de la URL
   const params = new URLSearchParams(location.search);
   const catURL = params.get("categoria");
 
-  // 2) Decide la categoría inicial
   let catInicial = "__all__";
   if (catURL && all.some(p => p.categoria === catURL)) {
     catInicial = catURL;
   }
 
-  // 3) Activa la pestaña y renderiza según catInicial
   if (catInicial !== "__all__") activarTabPorCategoria(catInicial);
   render(filtrar(catInicial, all), all);
 
-  // 4) Inicializa tabs y acciones
   initTabs(all);
   initActions(all);
-});
 
+  if($orden){
+    modoOrden = $orden.value || "default";
+    $orden.addEventListener("change", (e)=>{
+      modoOrden = e.target.value || "default";
+      const base = productosFiltrados.length ? productosFiltrados : filtrar(catInicial, allDataGlobal);
+      render(base, allDataGlobal);
+    });
+  }
+});
