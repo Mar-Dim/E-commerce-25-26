@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -8,11 +9,14 @@
   <link rel="stylesheet" href="assets/css/footer.css" />
   <link rel="stylesheet" href="assets/css/carrito.css" />
   <link rel="stylesheet" href="assets/css/productos.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script src="assets/js/products-data.js" defer></script>
   <script type="module" src="assets/js/main.js" defer></script>
   <script type="module" src="assets/js/productos.js" defer></script>
 </head>
+
 <body>
   <header id="navbar-container"></header>
 
@@ -25,6 +29,15 @@
       <span class="tab-cat" data-cat="Bebida Fría">Bebida fría</span>
       <span class="tab-cat" data-cat="Especial">Especial</span>
       <span class="tab-cat" data-cat="Postre">Postre</span>
+
+      <select id="ordenar"
+        style="margin-left:auto; padding:6px 10px; border-radius:8px; border:1px solid #ccc; font-weight:600;">
+        <option value="default">Ordenar por</option>
+        <option value="price_asc">Precio ↑</option>
+        <option value="price_desc">Precio ↓</option>
+        <option value="az">A–Z</option>
+        <option value="za">Z–A</option>
+      </select>
     </div>
 
     <section id="lista-productos" class="grid-productos"></section>
@@ -33,4 +46,5 @@
 
   <footer id="footer"></footer>
 </body>
+
 </html>
