@@ -43,7 +43,7 @@ export function createNavbar() {
                 <li><a href="productos.html">Productos</a></li>
                 <li><a href="nosotros.html">Nosotros</a></li>
                 <li><a href="contacto.html">Contacto</a></li>
-                <li><a href="#">Blog</a></li>
+                <li><a href="blog.html">Blog</a></li>
             </ul>
             <form class="search-form">
                 <input class="search-input" type="search" placeholder="Buscar..." />
