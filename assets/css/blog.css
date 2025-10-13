@@ -1,5 +1,38 @@
-.blog-hero { padding: 40px 0; background: #f5f5f5; text-align:center; }
-.blog-hero h1 { margin: 0; }
+.blog-hero {
+  position: relative;
+  background: url("../img/cafesito.jpeg") center/cover no-repeat;
+  color: #fff;
+  text-align: center;
+  padding: 80px 20px;
+  border-radius: 0 0 25px 25px;
+  overflow: hidden;
+}
+
+/* capa oscura para contraste */
+.blog-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.blog-hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+.blog-hero h1 {
+  margin: 0;
+  font-size: 2.5rem;
+  font-weight: 800;
+}
+
+.blog-hero p {
+  margin-top: 10px;
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
+
 
 .blog-toolbar { display:flex; gap:12px; justify-content:center; margin:20px 0; flex-wrap:wrap; }
 .blog-toolbar input, .blog-toolbar select { padding:8px 10px; border:1px solid #ddd; border-radius:8px; }
@@ -17,3 +50,84 @@
 .blog-mini .thumb img { width:120px; height:100%; object-fit:cover; display:block; }
 .blog-mini .info { padding:12px; }
 .blog-mini .cat { display:inline-block; background:#0D2B81; color:#fff; padding:2px 8px; border-radius:999px; font-size:.7rem; }
+
+/* ===== Blog Page (blog.html) — layout compacto y responsivo ===== */
+
+/* Contenedor general del listado (se inyecta dentro de #blog-list) */
+.bp-grid{
+  display: grid;
+  /* auto-fit + minmax hace wrap automático cuando hay 4+ */
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+/* Tarjeta */
+.bp-card{
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0,0,0,.08);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Imagen con tamaño controlado (nada gigante) */
+.bp-thumb{
+  /* opción A: altura controlada responsiva */
+  height: clamp(160px, 22vw, 240px);
+  overflow: hidden;
+}
+.bp-thumb img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .3s ease;
+}
+.bp-card:hover .bp-thumb img{ transform: scale(1.04); }
+
+/* Cuerpo */
+.bp-body{ padding: 14px 14px 16px; }
+
+/* Meta (cat + fecha) */
+.bp-meta{
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  color: var(--muted, #666);
+  font-size: .9rem;
+  margin-bottom: 6px;
+}
+.bp-cat{
+  background: #0D2B81;
+  color: #fff;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: .75rem;
+}
+
+/* Título y resumen */
+.bp-title{
+  margin: 6px 0 8px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--text, #222);
+}
+.bp-excerpt{
+  color: var(--muted, #555);
+  line-height: 1.6;
+  /* recorte a 3 líneas para todas las tarjetas */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ——— Alternativa: usar proporción fija en vez de altura ———
+   Si prefieres 16:9 exacto para todas las miniaturas:
+   .bp-thumb{ aspect-ratio:16/9; height:auto; }
+   .bp-thumb img{ height:100%; }
+*/
+
+/* Corrige reglas globales que estiran imágenes */
+#blog-list img{ max-width: none; }
