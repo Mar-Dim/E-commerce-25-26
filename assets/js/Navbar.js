@@ -58,5 +58,21 @@ export function createNavbar() {
 
 export function initNavbar() {
     const header = document.getElementById('navbar-container');
-    if (header) header.innerHTML = createNavbar();
+    if (!header) return;
+
+    header.innerHTML = createNavbar();
+ 
+    const burger = header.querySelector('.navbar .fa-bars');
+    const menu = header.querySelector('.navbar .menu');
+
+    if (burger && menu) {
+        burger.style.cursor = 'pointer';  
+        burger.addEventListener('click', () => {
+            menu.classList.toggle('show');
+        });
+    }
 }
+
+
+
+
