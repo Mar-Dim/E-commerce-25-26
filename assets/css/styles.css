@@ -108,15 +108,23 @@ html {
 }
 
 .navbar {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 1rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0;
+    position: relative; /* <-- importante para que el menú absoluto funcione */
+    z-index: 999;       /* asegurar que esté sobre otros elementos */
 }
 
+
 .navbar .fa-bars {
-	display: none;
+    display: none; /* ya lo tienes */
+    color: #fff;
+    font-size: 3rem;
+    cursor: pointer; /* <-- importante */
+    z-index: 1000;  /* asegura que esté sobre otros elementos */
 }
+
 
 .menu {
 	display: flex;
@@ -155,6 +163,17 @@ html {
 
 .menu a:hover {
 	color: #fff;
+}
+.menu.show {
+    display: flex;      /* o block si quieres vertical */
+    flex-direction: column;
+    gap: 1.5rem;        
+    background-color: var(--primary-color); 
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    padding: 1rem 2rem;
 }
 
 .search-form {
