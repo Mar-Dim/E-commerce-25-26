@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Baristas</title>
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <link rel="stylesheet" href="assets/css/carrito.css">
+
+    <script type="module" src="assets/js/products-data.js" defer></script>
+    <script type="module" src="assets/js/main.js" defer></script>
+    <script type="module" src="assets/js/destacados.js" defer></script>
+    <script type="module" src="assets/js/recientes.js" defer></script>
+    <script type="module" src="assets/js/mejores.js" defer></script>
+    <script type="module" src="assets/js/blog-data.js"></script>
+    <script type="module" src="assets/js/blog-latest.js"></script>
+</head>
+
+<body>
+    <header id="navbar-container"></header>
+
+    <div class="carrito-compras">
+        <h1>Tu Carrito de Compras</h1>
+
+        <div id="lista-carrito" class="cart-list">
+            <!-- Productos agregados aparecerán aquí -->
+
+        </div>
+
+        <div class="cart-totals">
+            <div class="total">
+                <p>Subtotal: $<span id="subtotal">0.00</span></p>
+                <p>Total (IVA 15%): $<span id="total">0.00</span></p>
+                <button id="checkout-button">Pagar</button>
+            </div>
+
+        </div>
+    </div>
+
+    <script type="module">
+        import { initNavbar, mostrarCarrito } from 'assets/js/products-data.js';
+        import { initCartDropdown } from 'assets/js/cart.js';
+
+        initNavbar();
+        initCartDropdown();
+        mostrarCarrito();
+
+        const checkoutButton = document.getElementById('checkout-button');
+        checkoutButton.addEventListener('click', () => {
+            alert('¡Gracias por tu compra! Total: $' + document.getElementById('total').textContent);
+            localStorage.removeItem('carrito');
+            mostrarCarrito();
+        });
+    </script>
+</body>
+
+</html>

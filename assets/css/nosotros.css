@@ -1,0 +1,170 @@
+/*
+========================================
+   ESTILOS PARA LA PÁGINA SOBRE NOSOTROS
+========================================
+*/
+
+/* 1. Importa todos los estilos de la página principal para mantener la consistencia */
+@import url('styles.css');
+
+/* 2. Estilos específicos para el Banner de la página "Nosotros" */
+.banner-nosotros {
+	background-image: linear-gradient(100deg, #000000, #00000020),
+		url('../img/banner-nosotros.jpg'); /* <- CAMBIA ESTA IMAGEN */
+	height: 45rem; /* Una altura ligeramente menor que el banner principal */
+}
+
+.banner-nosotros .content-banner {
+    padding: 15rem 0; /* Ajusta el centrado vertical del texto */
+}
+
+/* 3. Estilos para la sección principal de "Nuestra Esencia" */
+.about-us-section {
+    padding: 6rem 0;
+    background-color: #fff; /* Fondo blanco para contrastar con el fondo general */
+}
+
+.container-about {
+    display: flex;
+    align-items: center;
+    gap: 5rem;
+}
+
+.about-us-image {
+    flex: 1;
+    max-width: 50rem;
+}
+
+.about-us-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 1.5rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.about-us-content {
+    flex: 1.2; /* Darle un poco más de espacio al texto */
+}
+
+.about-us-content .heading-1 {
+    text-align: left; /* Alineado a la izquierda para esta sección */
+    margin-bottom: 1.5rem;
+}
+
+.about-us-content h2 {
+    font-size: 3.5rem;
+    font-weight: 600;
+    color: var(--dark-color);
+    margin-bottom: 2rem;
+    line-height: 1.2;
+}
+
+.about-us-content p {
+    font-size: 1.5rem;
+    line-height: 1.9;
+    color: #666;
+    margin-bottom: 1.5rem;
+}
+
+.about-us-content strong {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+
+/* 4. Estilos para la sección de "Nuestros Pilares" */
+.pilares-section {
+    padding: 6rem 0 8rem 0; /* Más espacio inferior */
+    background-color: var(--background-color);
+}
+
+.container-pilares {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columnas por defecto */
+    gap: 3rem;
+    margin-top: 4rem;
+}
+
+.pilar-card {
+    background-color: #fff;
+    padding: 3rem 2.5rem;
+    text-align: center;
+    border-radius: 1rem;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pilar-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.pilar-card .pilar-icon {
+    font-size: 4.5rem;
+    color: var(--primary-color);
+    margin-bottom: 2rem;
+    display: inline-block;
+}
+
+.pilar-card h3 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: var(--dark-color);
+}
+
+.pilar-card p {
+    font-size: 1.4rem;
+    color: #777;
+    line-height: 1.7;
+}
+
+
+/* 5. Media Queries para hacer la página "Nosotros" responsive */
+
+/* Tablets y dispositivos más pequeños (hasta 992px) */
+@media (max-width: 992px) {
+    .container-about {
+        gap: 3rem;
+    }
+
+    .about-us-content h2 {
+        font-size: 3rem;
+    }
+
+    .container-pilares {
+        grid-template-columns: repeat(2, 1fr); /* 2 columnas en tablet */
+    }
+}
+
+/* Dispositivos móviles (hasta 768px) */
+@media (max-width: 768px) {
+    .banner-nosotros {
+        height: 35rem;
+    }
+    
+    .banner-nosotros .content-banner {
+        padding: 12rem 2rem;
+        text-align: center;
+    }
+
+    .container-about {
+        flex-direction: column; /* Apila la imagen sobre el texto */
+        text-align: center;
+    }
+
+    .about-us-content .heading-1 {
+        text-align: center;
+    }
+}
+
+/* Dispositivos móviles pequeños (hasta 468px) */
+@media (max-width: 468px) {
+    .container-pilares {
+        grid-template-columns: 1fr; /* 1 columna en móviles pequeños */
+    }
+
+    .about-us-content h2 {
+        font-size: 2.8rem;
+    }
+}
