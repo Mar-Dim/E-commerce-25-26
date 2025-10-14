@@ -9,19 +9,30 @@ export function guardarCarrito(carrito) {
     localStorage.setItem('carrito', JSON.stringify(carrito));
 }
 
-export function agregarAlCarrito(idProducto) {
+export function agregarAlCarrito(idProducto, nombre = null, precio = null) {
     let carrito = obtenerCarrito();
-    const producto = productos.find(p => p.idProducto === idProducto);
-    if (!producto) return;
 
-    const index = carrito.findIndex(p => p.idProducto === idProducto);
-    if (index >= 0) carrito[index].cantidad++;
-    else carrito.push({ ...producto, cantidad: 1 });
+    const base = productos.find(p => String(p.idProducto) === String(idProducto)) || {};
+
+    const producto = {
+        ...base,
+        idProducto,
+        nombre: nombre || base.nombre,
+        precio: precio || base.precio,
+    };
+
+    const index = carrito.findIndex(p => String(p.idProducto) === String(idProducto));
+    if (index >= 0) {
+        carrito[index].cantidad++;
+    } else {
+        carrito.push({ ...producto, cantidad: 1 });
+    }
 
     guardarCarrito(carrito);
     renderCartDropdown();
     mostrarCarrito();
 }
+
 
 export function eliminarProducto(idProducto) {
     let carrito = obtenerCarrito();
